@@ -76,6 +76,14 @@ Special thanks for @pysan3 for [point that](https://github.com/adelarsq/image_pr
 
 - `<leader>p` - image preview for file under cursor
 
+## Kitty support
+
+Please note that you much have Kitty configured to listen on a socket for remote scripting. This
+can be done by adding something like this to your `kitty.conf`:
+
+    listen_on unix:/tmp/kitty.socket
+    allow_remote_control socket-only
+
 ## Features
 
 - [x] Terminals:
