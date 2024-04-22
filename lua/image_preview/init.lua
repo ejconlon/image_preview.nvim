@@ -55,17 +55,25 @@ function M.PreviewImage(absolutePath)
     if term == 'wezterm' then
       if os == 'win' then
         command = 'silent !wezterm cli split-pane -- powershell wezterm imgcat '
-          .. '\'' .. absolutePath .. '\'' .. ' ; pause'
+          .. '\''
+          .. absolutePath
+          .. '\''
+          .. ' ; pause'
       else
         command = 'silent !wezterm cli split-pane -- bash -c "wezterm imgcat '
-          .. '\'' .. absolutePath .. '\'' .. ' ; read"'
+          .. '\''
+          .. absolutePath
+          .. '\''
+          .. ' ; read"'
       end
     elseif term == 'kitty' then
       if os == 'win' then
         error('Kitty not supported on windows')
       else
         command = 'silent !kitten @ launch --type=overlay --keep-focus kitten icat --hold '
-          .. '\'' .. absolutePath .. '\''
+          .. '\''
+          .. absolutePath
+          .. '\''
       end
     else
       error('Image preview not supported for this terminal')
@@ -89,7 +97,7 @@ function M.PreviewImageOil()
   if use then
     local entry = imported.get_cursor_entry()
 
-    if (entry['type'] == 'file') then
+    if entry['type'] == 'file' then
       local dir = imported.get_current_dir()
       local fileName = entry['name']
       local fullName = dir .. fileName
@@ -105,10 +113,14 @@ function M.setup(args)
   args = vim.tbl_deep_extend('force', DEFAULTS, args)
   preview_key = args['keymaps']['preview']
 
-  local command = 'au Filetype NvimTree nmap <buffer> <silent> ' .. preview_key .. ' :lua require(\'image_preview\').PreviewImageNvimTree()<cr>'
+  local command = 'au Filetype NvimTree nmap <buffer> <silent> '
+    .. preview_key
+    .. ' :lua require(\'image_preview\').PreviewImageNvimTree()<cr>'
   vim.api.nvim_command(command)
 
-  local command = 'au Filetype oil nmap <buffer> <silent> ' .. preview_key .. ' :lua require(\'image_preview\').PreviewImageOil()<cr>'
+  local command = 'au Filetype oil nmap <buffer> <silent> '
+    .. preview_key
+    .. ' :lua require(\'image_preview\').PreviewImageOil()<cr>'
   vim.api.nvim_command(command)
 end
 
