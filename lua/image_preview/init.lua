@@ -70,7 +70,7 @@ function M.PreviewImage(absolutePath)
       if os == 'win' then
         error('Kitty not supported on windows')
       else
-        command = 'silent !kitten @ launch --type=overlay --keep-focus kitten icat --hold '
+        command = 'silent !kitten @ launch --type=window --keep-focus kitten icat --hold '
           .. '\''
           .. absolutePath
           .. '\''
