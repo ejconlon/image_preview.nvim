@@ -1,8 +1,13 @@
 # Image Preview for Neovim
 
+[DEV FORK - PLEASE USE UPSTREAM](https://github.com/adelarsq/image_preview.nvim)
+
 Neovim plugin for image previews.
 
-At moment depends on [WezTerm](https://wezfurlong.org/wezterm/) image terminal support.
+Requires one of the following terminals for support:
+
+* [WezTerm](https://wezfurlong.org/wezterm/)
+* [Kitty](https://sw.kovidgoyal.net/kitty/)
 
 ![image](https://user-images.githubusercontent.com/430272/194723584-3af9e272-b6b9-456a-af88-e1f79e5213e5.png)
 
@@ -11,35 +16,34 @@ At moment depends on [WezTerm](https://wezfurlong.org/wezterm/) image terminal s
 ### Plug
 
 ```
-Plug 'https://github.com/adelarsq/image_preview.nvim'
+Plug 'https://github.com/ejconlon/image_preview.nvim'
 ```
 
 ### Lazy
 
 ```lua
 {
-    'https://github.com/adelarsq/image_preview.nvim',
+    'ejconlon/image_preview.nvim',
     event = 'VeryLazy',
-    config = function()
-        require("image_preview").setup()
-    end
+    opts = {
+        -- These are all optional:
+        keybinds = {
+            preview = '<Leader>p',
+        },
+    },
 },
 ```
 
 ## Configuration
 
-Vim Script:
-
-```vim
-lua <<EOF
-require("image_preview").setup({})
-EOF
-```
-
-Lua:
-
 ```lua
-require("image_preview").setup({})
+opts = {
+    keybinds = {
+        preview = '<Leader>p',
+    },
+}
+
+require('image_preview').setup(opts)
 ```
 
 ### neo-tree.nvim
@@ -76,6 +80,7 @@ Special thanks for @pysan3 for [point that](https://github.com/adelarsq/image_pr
 
 - [x] Terminals:
    - [x] [WezTerm](https://wezfurlong.org/wezterm/)
+   - [x] [Kitty](https://sw.kovidgoyal.net/kitty/)
    - [ ] iTerm2
    - [ ] [Alacrity](https://github.com/alacritty/alacritty). Waiting for [pull/4763](https://github.com/alacritty/alacritty/pull/4763)
 - [x] Environments:
